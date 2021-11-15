@@ -12,19 +12,36 @@ body {
     margin-bottom: 0;
 }
 
-#parent-data {
-/*     margin-top: 1.5rem; */
-}
-
 .hidden {
     display: none;
 }
 
 .item-card {
-    outline: 1px solid #000;
+    color: #FFF1C0;
+    background-color: #3C847C;
     border-radius: 5px;
-    padding: 5px;
+    padding: .75rem .5rem .75rem .5rem;
     width: fit-content;
+    box-shadow: 2px 2px 5px #3F002E;
+}
+
+.item-card a {
+    color: #FFF1C0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    background-color: #3F002E;
+    padding: 0rem .25rem 0rem .25rem;
+    border-radius: 5px;
+}
+
+.item-card a:hover {
+    box-shadow: 2px 2px 4px #7F2B68;
+}
+
+.item-card p {
+    margin-top: 1rem;
+    margin-bottom: 0;
 }
 
 #sibling-code-list > li {
