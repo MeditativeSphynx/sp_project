@@ -5,6 +5,7 @@ var activationCodeLabel = document.querySelector('#activation-code-label')
 var sourceLabel = document.querySelector('#source-label')
 var siblingUL = document.querySelector('#sibling-code-list')
 var loadMoreBtn = document.querySelector('#load-more-btn')
+var searchValidation = document.querySelector('#search-validation')
 var activationCodeItems = 'undefined'
 
 // Search button event to GET the data from the API
@@ -14,7 +15,11 @@ searchBtn.addEventListener('click', function() {
     if (isValid) {
         purgeSiblings()
         $.get(`https://fyb-activation.samaritanspurse.org/api/fyb/${ACTIVATION_CODE}/siblings`, function(data) {
-            formatResults(data)
+            if (data !== undefined) {
+                formatResults(data)
+            } else {
+                throwInvaldation()
+            }
         })
     }
 })
@@ -90,15 +95,18 @@ function purgeSiblings() {
 
 function validateSearch() {
     var re = /^[A-Za-z0-9]+$/
-    var searchValidation = document.querySelector('#search-validation')
     if (searchInput.value.match(re) && searchInput.value.length < 10) {
         if (searchValidation.style.display !== 'none') {
             searchValidation.style.display = 'none'
         }
         return true
     } else {
-        searchValidation.classList.remove('hidden')
-        searchValidation.style.display = 'block'
+        throwInvaldation()
         return false
     }
+}
+
+function throwInvaldation() {
+    searchValidation.classList.remove('hidden')
+    searchValidation.style.display = 'block'
 }
