@@ -21,12 +21,10 @@ searchBtn.addEventListener('click', function() {
 
 // Load More Button Click Event
 loadMoreBtn.addEventListener('click', function() {
-    console.log('* Showing more results')
     var maxItems = 5
     var siblingHiddenIL = document.querySelectorAll('#sibling-code-list > li.hidden')
     if (siblingHiddenIL.length > 0) {
         siblingHiddenIL.forEach((item, index) => {
-            console.log('* Showing more results')
             if (index < maxItems) {
                 item.classList.remove('hidden')
             }
@@ -94,13 +92,11 @@ function validateSearch() {
     var re = /^[A-Za-z0-9]+$/
     var searchValidation = document.querySelector('#search-validation')
     if (searchInput.value.match(re) && searchInput.value.length < 10) {
-        console.log(searchInput.value.length)
         if (searchValidation.style.display !== 'none') {
             searchValidation.style.display = 'none'
         }
         return true
     } else {
-        console.log('alpha numeric only')
         searchValidation.classList.remove('hidden')
         searchValidation.style.display = 'block'
         return false
