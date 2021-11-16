@@ -10,10 +10,13 @@ var activationCodeItems = 'undefined'
 // Search button event to GET the data from the API
 searchBtn.addEventListener('click', function() {
     var ACTIVATION_CODE = searchInput.value
-    purgeSiblings()
-    $.get(`https://fyb-activation.samaritanspurse.org/api/fyb/${ACTIVATION_CODE}/siblings`, function(data) {
-        formatResults(data)
-    })
+    var isValid = validateSearch()
+    if (isValid) {
+        purgeSiblings()
+        $.get(`https://fyb-activation.samaritanspurse.org/api/fyb/${ACTIVATION_CODE}/siblings`, function(data) {
+            formatResults(data)
+        })
+    }
 })
 
 // Load More Button Click Event
@@ -85,4 +88,21 @@ function formatResults(data) {
 // Purges the sibling list.
 function purgeSiblings() {
     siblingUL.innerHTML = ''
+}
+
+function validateSearch() {
+    var re = /^[A-Za-z0-9]+$/
+    var searchValidation = document.querySelector('#search-validation')
+    if (searchInput.value.match(re) && searchInput.value.length < 10) {
+        console.log(searchInput.value.length)
+        if (searchValidation.style.display !== 'none') {
+            searchValidation.style.display = 'none'
+        }
+        return true
+    } else {
+        console.log('alpha numeric only')
+        searchValidation.classList.remove('hidden')
+        searchValidation.style.display = 'block'
+        return false
+    }
 }

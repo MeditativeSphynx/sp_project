@@ -74,6 +74,10 @@ label {
     margin-bottom: 7px;
 }
 
+#search-validation {
+    color: red;
+}
+
 button:hover {
     background-color: #7F2B68;
 }
