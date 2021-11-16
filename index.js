@@ -62,6 +62,7 @@ function formatResults(data) {
         var sibCodeLI = document.createElement('LI')
         var sibCodeDIV = document.createElement('DIV')
         var sibCodeA = document.createElement('A')
+        var sibCodeAWrapperDIV = document.createElement('DIV')
         var sibSourceP = document.createElement('P')
         
         sibSourceP.innerHTML = data.siblingCodes[i].source
@@ -77,7 +78,10 @@ function formatResults(data) {
         sibCodeA.setAttribute('data-code', data.siblingCodes[i].activationCode)
         sibCodeA.classList.add('activation-code-item')
 
-        sibCodeDIV.appendChild(sibCodeA)
+        sibCodeAWrapperDIV.classList.add('bounce')
+        sibCodeAWrapperDIV.appendChild(sibCodeA)
+
+        sibCodeDIV.appendChild(sibCodeAWrapperDIV)
         sibCodeDIV.appendChild(sibSourceP)
 
         sibCodeLI.appendChild(sibCodeDIV)
